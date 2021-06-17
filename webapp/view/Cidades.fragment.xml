@@ -1,0 +1,53 @@
+<core:FragmentDefinition id="idCidades" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout">
+	<Dialog id="idDialog" initialFocus="idFiltro" title="Cidades" busy="{modelDelay>/dialog}" busyIndicatorDelay="0">
+		<content>
+			<Table id="idTable" noDataText="" growingThreshold="30" growing="true" mode="None" alternateRowColors="true"
+				busyIndicatorDelay="0" items="{ path: 'modelEstados>/', sorter: { path: 'country', ascending: true, group: true }}">
+				<headerToolbar>
+					<Toolbar height="100%" class="backGround">
+						<form:SimpleForm minWidth="1024" maxContainerCols="3" editable="true" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3"
+							labelSpanXL="1" emptySpanL="0"  emptySpanM="0" emptySpanXL="1" columnsL="3" columnsXL="3" columnsM="3">
+							<form:content>
+								<Label textAlign="Left" text="{i18n>DialogLbFiltro}" />
+								<Input id="idFiltro" placeholder="{i18n>DialogPhFiltro}" editable="true" liveChange="onFilterCidades">
+									<layoutData>
+										<layout:GridData span="L5 M5" />
+									</layoutData>
+								</Input>
+							</form:content>
+						</form:SimpleForm>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column hAlign="Left" width="auto">
+						<Text text="Cidade - Sigla País"/>
+					</Column>
+					<Column hAlign="Left" width="auto">
+						<Text text="Latitude"/>
+					</Column>
+					<Column hAlign="Left" width="auto">
+						<Text text="Longetude"/>
+					</Column>
+					<Column hAlign="Left" width="auto">
+						<Text text="População"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem press="onSeletedCidade" type="Active">
+						<cells>
+							<Text text="{modelEstados>name} - {modelEstados>country}" />
+							<Text text="{modelEstados>coord/lat}" />
+							<Text text="{modelEstados>coord/lon}" />
+							<Text text="{path : 'modelEstados>stat/population', type: 'sap.ui.model.type.Float'} Habitantes" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<endButton>
+			<Button id="idCancelar" text="Cancelar" press="onDialogCancelar" type="Reject" busyIndicatorDelay="0" busy="{modelAux>btnDialogCancel}"
+				icon="sap-icon://decline"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

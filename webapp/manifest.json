@@ -1,0 +1,127 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "br.com.Tempo",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
+		},
+		"dataSources": {
+			"inputsData": {
+				"type": "JSON",
+					"uri": "model/current.city.list.json"
+			},
+			"inputsData2": {
+				"type": "JSON",
+					"uri": "model/city.list.json"
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "br.com.Tempo.view.Tempo",
+			"type": "XML",
+			"async": true,
+			"id": "Tempo"
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "br.com.Tempo.i18n.i18n"
+				}
+			},
+			"modelEstados": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "inputsData",
+				"preload": true
+			},
+			"modelCidades": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "inputsData2",
+				"preload": true
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "br.com.Tempo.view",
+				"controlAggregation": "pages",
+				"controlId": "app",
+				"clearControlAggregation": false,
+				"bypassed": {
+					"target": ["NotFound"]
+				}
+			},
+			"routes": [{
+				"name": "TargetTempo",
+				"pattern": "",
+				"target": ["TargetTempo"]
+			}],
+			"targets": {
+				"TargetTempo": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewId": "",
+					"viewName": "Tempo",
+					"controlId": "app",
+					"viewPath": "br.com.Tempo.view",
+					"controlAggregation": "pages"
+				},
+				"NotFound": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "NotFound",
+					"controlAggregation": "pages",
+					"controlId": "app",
+					"viewPath": "br.com.Tempo.view"
+				}
+			}
+		}
+	}
+}

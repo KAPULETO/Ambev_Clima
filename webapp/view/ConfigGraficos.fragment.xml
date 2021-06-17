@@ -1,0 +1,31 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog id="idConfigDialog" title="{i18n>DialogConfigTittle}" stretch="false" horizontalScrolling="false" >
+		<content>
+			<form:Form editable="true">
+				<form:formContainers>
+					<form:FormContainer>
+						<form:FormElement label="{i18n>DialogConfigGraf1}">
+							<Switch id="uploadButtonVisibleSwitch" state="{settings>/grafico1}"/>
+						</form:FormElement>
+						<form:FormElement label="{i18n>DialogConfigGraf2}">
+							<Switch id="uploadEnabledSwitch" state="{settings>/grafico2}"/>
+						</form:FormElement>
+						<!--<form:FormElement label="{i18n>DialogConfigGraf3}">-->
+						<!--	<Switch id="editButtonsVisibleSwitch" state="{settings>/grafico3}"/>-->
+						<!--</form:FormElement>-->
+						<!--<form:FormElement label="{i18n>DialogConfigGraf4}">-->
+						<!--	<Switch id="editButtonsEnabledSwitch" state="{settings>/grafico4}"/>-->
+						<!--</form:FormElement>-->
+					</form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0"
+						emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"/>
+				</form:layout>
+			</form:Form>
+		</content>
+		<endButton>
+			<Button id="idCancelar" text="Cancelar" press="onDialogCancelar" type="Reject" icon="sap-icon://decline"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>	

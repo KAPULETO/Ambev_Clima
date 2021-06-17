@@ -1,0 +1,76 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:core="sap.ui.core"
+	xmlns:viz.data="sap.viz.ui5.data" xmlns:viz="sap.viz.ui5.controls" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+	xmlns:mc="sap.suite.ui.microchart" controllerName="br.com.Tempo.controller.Tempo" displayBlock="true">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						<f:SimpleForm id="SimpleFormChange471" editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="4"
+							labelSpanS="12" adjustLabelSpan="false" emptySpanXL="3" emptySpanL="3" emptySpanM="1" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+							singleContainerFullSize="false">
+							<f:content>
+								<Label text="{i18n>LbInputCidade}"/>
+								<Input id="idCidades" value="{modelGraf1>/name} - {modelGraf1>/sys/country}" enabled="false"/>
+								<Button id="idDeAl" text="" type="Emphasized" icon="sap-icon://search" tooltip="Pesquisar Operadores" width="100%" press="onAbrirTelaPesq">
+									<layoutData>
+										<l:GridData span="L1 M1"/>
+									</layoutData>
+								</Button>
+							</f:content>
+						</f:SimpleForm>
+					</content>
+					<headerContent>
+						<Button xmlns="sap.m" text="{i18n>BtnConfig}" id="button0" icon="sap-icon://action-settings" press="onAbrirConfig" />
+						<Button xmlns="sap.m" text="{i18n>BtnRefresh}" id="button1" icon="sap-icon://refresh" press="onInicializaModels" visible="false"/>
+					</headerContent>
+					<VBox class="sapUiSmallMargin" visible="{settings>/grafico1}">
+						<f:SimpleForm id="idSF1" editable="true" layout="ResponsiveGridLayout" title="" labelSpanXL="4" labelSpanL="4" labelSpanM="12"
+							labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"
+							singleContainerFullSize="false">
+							<f:content>
+								<core:Title text="{i18n>TittleGraf1} - Clima: [ {modelClima>/main} - {modelClima>/description} ]"/>
+								<Label text="Temperatura"/>
+								<Text text="{path: 'modelGraf1>/main/temp', formatter: '.onConverterTemperatura'} ºC"/>
+								<Label text="Sensação térmica"/>
+								<Text text="{path : 'modelGraf1>/main/feels_like', formatter: '.onConverterTemperatura'} ºC"/>
+								<Label text="Temperatura Mín"/>
+								<Text text="{path : 'modelGraf1>/main/temp_min', formatter: '.onConverterTemperatura'} ºC"/>
+								<Label text="Temperatura Máx"/>
+								<Text text="{path : 'modelGraf1>/main/temp_max', formatter: '.onConverterTemperatura'} ºC"/>
+								<Label text="Pressão"/>
+								<Text text="{modelGraf1>/main/pressure} atm"/>
+								<Label text="Umidade"/>
+								<Text text="{modelGraf1>/main/humidity} g/m3v"/>
+								<core:Title text="Gráfico 1 em Kevin"/>
+								<FlexBox alignItems="Center" class="sapUiSmallMargin">
+									<items>
+										<mc:InteractiveBarChart labelWidth="25%" displayedBars="6" selectionChanged="selectionChanged" press="press">
+											<mc:bars>
+												<mc:InteractiveBarChartBar label="Temperatura" value="{modelGraf1>/main/temp}" color="Critical"/>
+												<mc:InteractiveBarChartBar label="Sensação térmica" value="{modelGraf1>/main/feels_like}" color="Critical"/>
+												<mc:InteractiveBarChartBar label="Temperatura Mín" value="{modelGraf1>/main/temp_min}" color="Good"/>
+												<mc:InteractiveBarChartBar label="Temperatura Máx" value="{modelGraf1>/main/temp_max}" color="Error"/>
+												<mc:InteractiveBarChartBar label="Pressão" value="{modelGraf1>/main/pressure}" color="Critical"/>
+												<mc:InteractiveBarChartBar label="Umidade" value="{modelGraf1>/main/humidity}" color="Critical"/>
+											</mc:bars>
+										</mc:InteractiveBarChart>
+									</items>
+								</FlexBox>
+							</f:content>
+						</f:SimpleForm>
+					</VBox>
+					<VBox class="sapUiSmallMargin" visible="{settings>/grafico2}">
+						<l:FixFlex id="idFixFlex" class="fixFlexFixedSize" minFlexSize="250">
+							<l:fixContent></l:fixContent>
+							<l:flexContent>
+								<viz:Popover id="idPopOver"></viz:Popover>
+								<viz:VizFrame id="idVizFrameBar" uiConfig="{applicationSet:'fiori'}" height="100%" width="100%"></viz:VizFrame>
+							</l:flexContent>
+						</l:FixFlex>
+					</VBox>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
