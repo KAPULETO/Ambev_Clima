@@ -86,12 +86,6 @@ sap.ui.define([
 			var oModelSettings = new JSONModel(auxSettings);
 			this.setModel(oModelSettings, "settings");
 
-			// var auxSettings = {
-			// 	grafico1: true,
-			// 	grafico2: true,
-			// 	grafico3: true,
-			// 	grafico4: true,
-			// };
 			var vetorItensGraf2 = {
 				dados: []
 			};
@@ -141,7 +135,6 @@ sap.ui.define([
 			var sValue = evt.getSource().getValue();
 			var aFilters = [];
 			var oFilter = [
-				// new sap.ui.model.Filter("idade", sap.ui.model.FilterOperator.Contains, sValue), 
 				new sap.ui.model.Filter("name", sap.ui.model.FilterOperator.Contains, sValue)
 			];
 
@@ -202,14 +195,6 @@ sap.ui.define([
 			var sUrl = this.getModelGlobal("modelTela").getProperty("/UrlModel");
 			var ChaveAcesso = this.getModelGlobal("modelTela").getProperty("/ChaveAcesso");
 
-			// var oModel = new sap.ui.model.odata.ODataModel(sUrl);
-
-			// var oModel = new sap.ui.model.odata.v2.ODataModel(sUrl, {
-			// 	headers: {
-			// 		"appid": ChaveAcesso
-			// 	}
-			// });
-
 			var oModel = new sap.ui.model.odata.ODataModel(sUrl, {
 				headers: {
 					"Access-Control-Allow-Origin": "*"
@@ -232,6 +217,7 @@ sap.ui.define([
 					that.getModel("modelGraf1").setData(resultData);
 
 					var vetorItensGraf2 = that.getModel().getData();
+					
 					vetorItensGraf2.dados.push({
 						Cidade: itemSelected.name,
 						Populacao: itemSelected.stat.population,
@@ -257,17 +243,6 @@ sap.ui.define([
 			var dataPath = "";
 			oVizFrame.setVizType("stacked_column");
 
-			// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ README!!! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-			// or this works also
-			//  oVizFrame.setVizType('column');
-
-			// a Simple example here:
-			// http://scn.sap.com/community/ui-technology/blog/2013/07/01/sapui5-viz-charts-event-handling 
-
-			// look at the examples here:
-			// https://sapui5.netweaver.ondemand.com/test-resources/sap/suite/ui/commons/ChartContainer.html?sap-ui-debug=true&sap-ui-language=de-DE&sap-ui-accessibility=true&sap-ui-jqueryversion=1.11.1&sap-ui-theme=sap_bluecrystal
-			// and look in the source code for: oVizFrame4  --> "vizFrame Column Chart Sample"
-
 			oVizFrame.setUiConfig({
 				"applicationSet": "fiori"
 			});
@@ -288,23 +263,18 @@ sap.ui.define([
 				}
 			});
 			
-			// , {
-			// 		name: "Cost",
-			// 		value: "{Cost}"
-			// 	}
-			
 			oVizFrame.setDataset(oDataset);
 			oVizFrame.setModel(this.getModel());
 
 			var feedValueAxis = new FeedItem({
-					'uid': "valueAxis",
-					'type': "Measure",
-					'values': ["População"]
+					"uid": "valueAxis",
+					"type": "Measure",
+					"values": ["População"]
 				}),
 				feedCategoryAxis = new FeedItem({
-					'uid': "categoryAxis",
-					'type': "Dimension",
-					'values': ["Cidades"]
+					"uid": "categoryAxis",
+					"type": "Dimension",
+					"values": ["Cidades"]
 				});
 
 			oVizFrame.addFeed(feedValueAxis);
@@ -317,9 +287,6 @@ sap.ui.define([
 					}
 				},
 				valueAxis: {
-					// label: {
-					// 	formatString: "axisFormat"
-					// },
 					title: {
 						visible: true,
 						text: "Total Pop"
@@ -333,7 +300,6 @@ sap.ui.define([
 				plotArea: {
 					dataLabel: {
 						visible: true,
-						// formatString: "datalabelFormat",
 						style: {
 							color: null
 						}
@@ -350,6 +316,5 @@ sap.ui.define([
 				}
 			});
 		}
-
 	});
 });
